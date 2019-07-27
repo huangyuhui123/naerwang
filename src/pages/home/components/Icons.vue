@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper  >
+        <swiper  :options="swiperOption">
             <swiper-slide v-for="(page, index) of pages" :key="index">
                 <div class="icon"
                     v-for="item of page"
@@ -18,56 +18,20 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    list: Array
+  },
   data () {
     return {
-      iconList: [
-        {
-          id: '0001',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_2.jpg',
-          desc: '景点门票'
-        },
-        {
-          id: '0002',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_3.jpg',
-          desc: '滑雪季'
-        },
-        {
-          id: '0003',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_4.jpg',
-          desc: '泡温泉'
-        },
-        {
-          id: '0004',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_5.jpg',
-          desc: '动物园'
-        }, {
-          id: '0005',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_6.jpg',
-          desc: '植物园'
-        }, {
-          id: '0006',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_7.jpg',
-          desc: '景点门票'
-        }, {
-          id: '0007',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_8.jpg',
-          desc: '景点门票'
-        }, {
-          id: '0008',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_9.jpg',
-          desc: '景点门票'
-        }, {
-          id: '0009',
-          imgUrl: 'http://pic46.nipic.com/20140815/2531170_172548240000_1.jpg',
-          desc: '一日游'
-        }
-      ]
+      swiperOption: {
+        autoplay: false
+      }
     }
   },
   computed: {
     pages () {
       const pages = []
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []
@@ -85,7 +49,9 @@ export default {
     .icons >>> .swiper-container
         height: 0
         padding-bottom: 50%
-    .icon
+    .icons
+        margin-top: .1rem
+       .icon
         position: relative
         overflow hidden
         float: left
