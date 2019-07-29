@@ -1,22 +1,27 @@
 <template>
     <div>
         <div class="banner" @click="handleBannerClick">
-            <img src="https://img1.qunarzz.com/vs_ceph_vs_tts/2832024d-dfe1-4999-b426-497ef7971e3d.jpg_r_640x420x90_56057c8e.jpg" alt="" class="banner-img">
+            <img :src="bannerImg" alt="" class="banner-img">
             <div class="banner-info">
-                <div class="banner-title">自然进去</div>
+                <div class="banner-title">{{this.sightName}}</div>
                 <div class="banner-number">
                     <span class="iconfont banner-icon">&#xe634;</span>
-                    39
+                    {{this.bannerImg.length}}
                 </div>
             </div>
         </div>
-        <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
+        <common-gallary :imgs="gallaryImgs" v-show="showGallary" @close="handleGallaryClose"></common-gallary>
     </div>
 </template>
 <script>
 import CommonGallary from 'common/gallary/Gallary'
 export default {
   name: 'DetailBanner',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gallaryImgs: Array
+  },
   data () {
     return {
       showGallary: false,
